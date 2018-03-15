@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity 
+    StyleSheet,
+    Text,
+    View,
+    TextInput,
+    TouchableOpacity 
 } from 'react-native';
 
 export default class Form extends Component<{}> {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     button: {
         width:300,
-        backgroundColor:'#1c313a',
+        backgroundColor:'#001064',
         borderRadius: 25,
         marginVertical: 10,
         paddingVertical: 13

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import {
     StyleSheet,
     Text,
@@ -9,22 +8,21 @@ import {
 } from 'react-native';
 
 import Form from '../components/Form';
+import { Actions } from 'react-native-router-flux';
 
-import {Actions} from 'react-native-router-flux';
-
-export default class Login extends Component<{}>{
-    signup(){
-        Actions.signup();
+export default class Signup extends Component<{}>{
+    goBack(){
+        Actions.pop();
     }
 
     render(){
         return(
             <View style={styles.container}>
-                <Form type="Login" />
+                <Form type="Signup" />
                 <View style={styles.signupTextCont}>
-                    <Text style={styles.signupText}>Don't have an account yet?</Text>
-					<TouchableOpacity onPress={this.signup}><Text style={styles.signupButton}> Signup</Text></TouchableOpacity>
-                </View>
+					<Text style={styles.signupText}>Already have an account?</Text>
+					<TouchableOpacity onPress={this.goBack}><Text style={styles.signupButton}> Sign in</Text></TouchableOpacity>
+				</View>
             </View>
         )
     }
