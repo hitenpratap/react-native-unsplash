@@ -6,6 +6,8 @@ import {
   StatusBar
 } from 'react-native';
 
+import Routes from './app/Routes';
+
 export default class App extends Component<{}> {
   render() {
     return (
@@ -14,7 +16,7 @@ export default class App extends Component<{}> {
            backgroundColor="#1a237e"
            barStyle="light-content"
          />
-        <Text>Hello World!</Text>
+        <Routes/>
       </View>
     );
   }
