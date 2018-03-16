@@ -28,15 +28,13 @@ export default class Signup extends Component<{}>{
         Actions.pop();
     }
 
-    signup(username, password) {
+    async signup(username, password) {
         try {
-            firebase.auth().createUserWithEmailAndPassword(username, password);
+            await firebase.auth().createUserWithEmailAndPassword(username, password);
             Toast.show("User has been registered successfully.");        
             Actions.login();
         } catch (error) {
-            // this.setState({
-            //     response: error.toString()
-            // })
+            Actions.errorPage({errorMsg:error.toString()});
         }
     }
 

@@ -8,27 +8,24 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-import Form from '../components/Form';
-
 import {Actions} from 'react-native-router-flux';
 
-export default class Login extends Component<{}>{
+export default class ErrorPage extends Component<{}>{
     constructor(props){
         super(props);
-        this.signup = this.signup.bind(this);
+        this.login = this.login.bind(this);
     }
 
-    signup(){
-        Actions.signup();
+    login(){
+        Actions.login();
     }
 
     render(){
         return(
             <View style={styles.container}>
-                <Form type="Login" />
                 <View style={styles.signupTextCont}>
-                    <Text style={styles.signupText}>Don't have an account yet?</Text>
-					<TouchableOpacity onPress={this.signup}><Text style={styles.signupButton}> Signup</Text></TouchableOpacity>
+                    <Text style={styles.signupText}>{this.props.errorMsg?this.props.errorMsg:'Something went wrong. Please try again.'}</Text>
+					<TouchableOpacity onPress={this.login}><Text style={styles.signupButton}>Go Back</Text></TouchableOpacity>
                 </View>
             </View>
         )
@@ -44,10 +41,10 @@ const styles = StyleSheet.create({
     },
     signupTextCont : {
         flexGrow: 1,
-        alignItems:'flex-end',
+        alignItems:'center',
         justifyContent :'center',
         paddingVertical:16,
-        flexDirection:'row'
+        flexDirection:'column'
     },
     signupText: {
         color:'rgba(255,255,255,0.6)',
