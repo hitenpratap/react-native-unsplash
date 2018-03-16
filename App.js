@@ -7,8 +7,14 @@ import {
 } from 'react-native';
 
 import Routes from './app/Routes';
+import Firebase from './app/utils/firebase/Firebase';
 
 export default class App extends Component<{}> {
+  constructor(props){
+    super(props);
+    Firebase.initialise();
+  }
+
   render() {
     return (
       <View style={styles.container}>

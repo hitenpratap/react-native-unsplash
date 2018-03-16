@@ -4,21 +4,46 @@ import {
     Text,
     View,
     StatusBar ,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
 
 import Form from '../components/Form';
 import { Actions } from 'react-native-router-flux';
+import * as firebase from "firebase";
+import Toast from 'react-native-root-toast';
 
 export default class Signup extends Component<{}>{
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: ""
+        };
+        this.goBack = this.goBack.bind(this);
+        this.signup = this.signup.bind(this);
+    }
+
     goBack(){
+        console.log(this.state.username);
         Actions.pop();
+    }
+
+    signup(username, password) {
+        try {
+            firebase.auth().createUserWithEmailAndPassword(username, password);
+            Toast.show("User has been registered successfully.");        
+            Actions.login();
+        } catch (error) {
+            // this.setState({
+            //     response: error.toString()
+            // })
+        }
     }
 
     render(){
         return(
             <View style={styles.container}>
-                <Form type="Signup" />
+                <Form type="Signup" signUpData={this.signup}/>
                 <View style={styles.signupTextCont}>
 					<Text style={styles.signupText}>Already have an account?</Text>
 					<TouchableOpacity onPress={this.goBack}><Text style={styles.signupButton}> Sign in</Text></TouchableOpacity>

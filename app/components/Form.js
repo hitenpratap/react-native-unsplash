@@ -7,7 +7,26 @@ import {
     TouchableOpacity 
 } from 'react-native';
 
+import Toast from 'react-native-root-toast';
+
 export default class Form extends Component<{}> {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: ""
+        };
+        this.processSignup = this.processSignup.bind(this);
+    }
+
+    processSignup(){
+        console.log(this.state.username);
+        let username = this.state.username;
+        let password = this.state.password;
+        this.props.signUpData(username,password);
+    }
+
     render(){
         return(
             <View style={styles.container}>
@@ -17,6 +36,7 @@ export default class Form extends Component<{}> {
                     placeholderTextColor = "#ffffff"
                     selectionColor="#fff"
                     keyboardType="email-address"
+                    onChangeText={(username) => this.setState({username})}
                     onSubmitEditing={()=> this.password.focus()} 
                 />
                 <TextInput style={styles.inputBox} 
@@ -24,9 +44,10 @@ export default class Form extends Component<{}> {
                     placeholder="Password"
                     secureTextEntry={true}
                     placeholderTextColor = "#ffffff"
+                    onChangeText={(password) => this.setState({password})}                    
                     ref={(input) => this.password = input}
                 /> 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity style={styles.button} onPress={this.processSignup}>
                     <Text style={styles.buttonText}>{this.props.type}</Text>
                 </TouchableOpacity> 
             </View>
