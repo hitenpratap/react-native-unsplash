@@ -11,6 +11,7 @@ import Form from '../components/Form';
 import { Actions } from 'react-native-router-flux';
 import * as firebase from "firebase";
 import Toast from 'react-native-root-toast';
+import Logo from '../components/Logo';
 
 export default class Signup extends Component<{}>{
     constructor(props) {
@@ -41,6 +42,7 @@ export default class Signup extends Component<{}>{
     render(){
         return(
             <View style={styles.container}>
+            <Logo/>
                 <Form type="Signup" signUpData={this.signup}/>
                 <View style={styles.signupTextCont}>
 					<Text style={styles.signupText}>Already have an account?</Text>
