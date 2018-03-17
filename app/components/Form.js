@@ -18,6 +18,7 @@ export default class Form extends Component<{}> {
             password: ""
         };
         this.processSignup = this.processSignup.bind(this);
+        this.processLogin = this.processLogin.bind(this);
     }
 
     processSignup(){
@@ -25,6 +26,13 @@ export default class Form extends Component<{}> {
         let username = this.state.username;
         let password = this.state.password;
         this.props.signUpData(username,password);
+    }
+
+    processLogin(){
+        console.log(this.state.username);
+        let username = this.state.username;
+        let password = this.state.password;
+        this.props.loginData(username,password);
     }
 
     render(){
@@ -47,7 +55,7 @@ export default class Form extends Component<{}> {
                     onChangeText={(password) => this.setState({password})}                    
                     ref={(input) => this.password = input}
                 /> 
-                <TouchableOpacity style={styles.button} onPress={this.processSignup}>
+                <TouchableOpacity style={styles.button} onPress={this.props.type=='Login' ? this.processLogin : this.processSignup}>
                     <Text style={styles.buttonText}>{this.props.type}</Text>
                 </TouchableOpacity> 
             </View>
