@@ -16,6 +16,22 @@ export default class Home extends Component<{}>{
     constructor(props){
         super(props);
         this.logout = this.logout.bind(this);
+        this.state = {
+            username: "",
+            uid: ""
+        };
+    }
+
+    async componentDidMount() {
+        try {
+            let user = await firebase.auth().currentUser;
+            this.setState({
+                uid: user.uid,
+                username: user.email
+            });
+        } catch (error) {
+            Actions.errorPage({errorMsg:error.toString()});
+        }
     }
 
     async logout() {
@@ -32,6 +48,7 @@ export default class Home extends Component<{}>{
         return(
             <View style={styles.container}>
                 <View style={styles.homeTextCont}>
+                    <Text style={styles.welcomeText}>Welcome {this.state.username}</Text>
 					<TouchableOpacity onPress={this.logout}><Text style={styles.logoutButton}>Logout</Text></TouchableOpacity>
                 </View>
             </View>
@@ -52,6 +69,11 @@ const styles = StyleSheet.create({
         justifyContent :'center',
         paddingVertical:16,
         flexDirection:'column'
+    },
+    welcomeText: {
+        color:'#ffffff',
+        fontSize:22,
+        fontWeight:'500'
     },
     logoutButton: {
         color:'#ffffff',
