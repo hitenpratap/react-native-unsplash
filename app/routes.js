@@ -9,18 +9,18 @@ import Home from './screens/Home';
 export default class Routes extends Component<{}>{
     constructor(props){
         super(props);
-        this.checkAuth = this.checkAuth.bind(this);
-        this.goToLogin = this.goToLogin.bind(this);
+        // this.checkAuth = this.checkAuth.bind(this);
+        // this.goToLogin = this.goToLogin.bind(this);
     }
 
     render(){
         return(
             <Router>
                 <Stack key="root" hideNavBar={true}>
-                    <Scene key="login" component={Login}/>
+                    <Scene key="login" component={Login} initial={true}/>
                     <Scene key="signup" component={Signup} />
                     <Scene key="errorPage" component={ErrorPage} />
-                    <Scene key="home" component={Home} initial={true} />
+                    <Scene key="home" component={Home} />
                 </Stack>
             </Router>
         )
